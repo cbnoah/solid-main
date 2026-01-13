@@ -2,6 +2,11 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class DisplayHandler {
+    final Scanner scanner;
+
+    public DisplayHandler(Scanner scanner) {
+        this.scanner = scanner;
+    }
     static void afficherMenu() {
         System.out.println("\n--- MENU ---");
         System.out.println("1. Créer une facture");
@@ -9,8 +14,8 @@ public class DisplayHandler {
         System.out.println("0. Quitter");
     }
 
-    static void traiterDocument(Scanner scanner, FacturationService service, boolean facture) {
-        double montantHT = lireDoublePositif(scanner, "Montant HT : ");
+    void traiterDocument(FacturationService service, boolean facture) {
+        double montantHT = lireDoublePositif("Montant HT : ");
 
         if (facture) {
             System.out.print("Nom du client : ");
@@ -21,19 +26,18 @@ public class DisplayHandler {
         }
     }
 
-    static int lireEntier(Scanner scanner, String message) {
+    int lireEntier(String message) {
         while (true) {
             System.out.print(message);
             try {
-                int valeur = Integer.parseInt(scanner.nextLine().trim());
-                return valeur;
+                return Integer.parseInt(scanner.nextLine().trim());
             } catch (NumberFormatException e) {
                 System.out.println("Veuillez entrer un nombre entier valide.");
             }
         }
     }
 
-    private static double lireDoublePositif(Scanner scanner, String message) {
+    private double lireDoublePositif(String message) {
         while (true) {
             System.out.print(message);
             try {
