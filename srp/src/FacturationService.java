@@ -1,4 +1,5 @@
 public class FacturationService {
+    SavingHandler savingHandler = new SavingHandler();
 
     public void creerFacture(double montantHT, String clientName) {
         double tva = montantHT * 0.2;
@@ -8,7 +9,7 @@ public class FacturationService {
         DisplayHandler.clientInfo(clientName, montantHT, tva, total);
 
         // Sauvegarde fichier
-        SavingHandler.savingBill(clientName, montantHT, tva, total);
+        savingHandler.savingBill(clientName, montantHT, tva, total);
     }
 
 
@@ -20,6 +21,6 @@ public class FacturationService {
         DisplayHandler.quotationInfo(montantHT, tva, total);
 
         // Sauvegarde fichier
-        SavingHandler.savingQuotation(montantHT, tva, total);
+        savingHandler.savingQuotation(montantHT, tva, total);
     }
 }
