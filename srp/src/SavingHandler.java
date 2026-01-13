@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class SavingHandler {
-    public static void savingBill(String clientName, double montantHT, double tva, double total) {
+    public void savingBill(String clientName, double montantHT, double tva, double total) {
         try (FileWriter writer = new FileWriter("factures.txt", true)) {
             writer.write("FACTURE | " + LocalDate.now()
                     + " | Client=" + clientName
@@ -15,7 +15,7 @@ public class SavingHandler {
         }
     }
 
-    public static void savingQuotation(double montantHT, double tva, double total) {
+    public void savingQuotation(double montantHT, double tva, double total) {
         try (FileWriter writer = new FileWriter("devis.txt", true)) {
             writer.write("DEVIS | " + LocalDate.now()
                     + " | HT=" + montantHT
