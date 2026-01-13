@@ -3,15 +3,15 @@ import java.util.Scanner;
 public class InputHandler {
 
     public static boolean menuChoice(Scanner scanner, FacturationService service, boolean quitter) {
-
-        int choix = DisplayHandler.lireEntier(scanner, "Choix : ");
+        DisplayHandler displayHandler = new DisplayHandler(scanner);
+        int choix = displayHandler.lireEntier("Choix : ");
 
         switch (choix) {
             case 1:
-                DisplayHandler.traiterDocument(scanner, service, true);
+                displayHandler.traiterDocument(service, true);
                 break;
             case 2:
-                DisplayHandler.traiterDocument(scanner, service, false);
+                displayHandler.traiterDocument(service, false);
                 break;
             case 0:
                 quitter = true;
