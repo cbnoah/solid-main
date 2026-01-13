@@ -1,10 +1,15 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainOCP {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        CalculateurRemise calculateur = new CalculateurRemise();
+        ArrayList<RemiseHandler> remisesTypes = new ArrayList<>();
+        remisesTypes.add(new Standard());
+        remisesTypes.add(new Etudiant());
+        remisesTypes.add(new VIP());
+
 
         boolean quitter = false;
 
@@ -26,7 +31,7 @@ public class MainOCP {
             System.out.print("Montant HT : ");
             double montant = lireDouble(scanner);
 
-            double total = calculateur.calculerTotal(choix, montant);
+            double total = remisesTypes.get(choix - 1).calcul(montant);
             System.out.println("Montant après remise : " + total);
         }
 
