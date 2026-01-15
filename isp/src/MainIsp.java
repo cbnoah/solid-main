@@ -43,10 +43,25 @@ public class MainIsp {
 
     private static void executerFonction(Machine machine, int fonction) {
         switch (fonction) {
-            case 1: machine.print(); break;
-            case 2: machine.scan(); break;
-            case 3: machine.fax(); break;
-            default: System.out.println("Fonction inconnue");
+            case 1:
+                machine.print();
+                break;
+            case 2:
+                if (machine instanceof ScanMachine) {
+                    ((ScanMachine) machine).scan();
+                } else {
+                    throw new UnsupportedOperationException();
+                }
+                break;
+            case 3:
+                if (machine instanceof FaxMachine) {
+                    ((FaxMachine) machine).fax();
+                } else {
+                    throw new UnsupportedOperationException();
+                }
+                break;
+            default:
+                System.out.println("Fonction inconnue");
         }
     }
 
